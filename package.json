@@ -9,6 +9,8 @@
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.22.1",
     "firebaseui": "^4.6.1",
+    "pubnub": "^4.29.9",
+    "pubnub-react": "^2.0.0-rc.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-firebaseui": "^4.1.0",
