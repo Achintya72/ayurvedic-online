@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import firebase from 'firebase/app';
 
 const FirebaseContext = React.createContext();
 
@@ -16,8 +17,23 @@ const config = {
 class Firebase {
     constructor() {
         app.initializeApp(config);
+        /*if (!firebase.apps.length) {
+            app.initializeApp(config);
+        }*/
         this.auth = app.auth();
         this.firestore = app.firestore();
+        this.uiConfig = {
+            // Popup signin flow rather than redirect flow.
+            signInFlow: 'popup',
+            // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
+            signInSuccessUrl: '/signedIn',
+            // We will display Google and Facebook as auth providers.
+            signInOptions: [
+              firebase.auth.EmailAuthProvider.PROVIDER_ID,
+              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+              firebase.auth.FacebookAuthProvider.PROVIDER_ID
+            ]
+          };
     }
 }
 class FirebaseContextProvider extends Component {
