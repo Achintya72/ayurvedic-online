@@ -22,30 +22,27 @@ class Firebase {
         }*/
         this.auth = app.auth();
         this.firestore = app.firestore();
-        this.uiConfig = {
-            // Popup signin flow rather than redirect flow.
-            signInFlow: 'popup',
-            // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-            signInSuccessUrl: '/signedIn',
-            // We will display Google and Facebook as auth providers.
-            signInOptions: [
-              firebase.auth.EmailAuthProvider.PROVIDER_ID,
-              firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-              firebase.auth.FacebookAuthProvider.PROVIDER_ID
-            ]
-          };
+        this.handleSignOut = this.handleSignOut(this)
+
     }
+    handleSignOut()
+    {
+        this.auth.signOut();
+    }
+    signInWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
+
 }
-class FirebaseContextProvider extends Component {
-    state = {
-        firebase: new Firebase()
-    }
-    render() {
-        return (
-            <FirebaseContext.Provider value={this.state.firebase}>
-                {this.props.children}
-            </FirebaseContext.Provider>
-        )
-    }
-}
-export {FirebaseContextProvider, FirebaseContext};
+// class FirebaseContextProvider extends Component {
+//     constructor(){    
+//         super()    
+//         this.firebase= new Firebase()        
+//     }
+//     render() {
+//         return (
+//             <FirebaseContext.Provider value={this.state.firebase}>
+//                 {this.props.children}
+//             </FirebaseContext.Provider>
+//         )
+//     }
+// }
+export {Firebase, FirebaseContext};
