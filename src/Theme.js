@@ -39,6 +39,13 @@ export const theme = createMuiTheme({
             fontWeight: '300',
             fontSize: '18pt',
             paddingTop: '0.5em'
-        }
+        },
+        body2: {
+            fontFamily: [
+                'Montserrat'
+            ],
+            fontSize: '22pt',
+            fontWeight: '400'
+        },
     }
 });
