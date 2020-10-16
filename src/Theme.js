@@ -11,6 +11,10 @@ export const theme = createMuiTheme({
         }
 
     },
+    status: {
+        google: '#EA4335',
+        facebook: '#385695'
+    },
     typography: {
         body1: {
             fontFamily: [
@@ -39,6 +43,13 @@ export const theme = createMuiTheme({
             fontWeight: '300',
             fontSize: '18pt',
             paddingTop: '0.5em'
-        }
+        },
+        body2: {
+            fontFamily: [
+                'Montserrat'
+            ],
+            fontSize: '22pt',
+            fontWeight: '400'
+        },
     }
 });
