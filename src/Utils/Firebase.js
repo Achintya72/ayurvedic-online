@@ -3,6 +3,7 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import firebase from 'firebase/app';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
 const FirebaseContext = React.createContext();
 
@@ -34,18 +35,26 @@ class Firebase {
               firebase.auth.FacebookAuthProvider.PROVIDER_ID
             ]
           };
+        this.auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);
+    }
+    doSignUpWithEmailAndPassword = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
+    doSignInWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
+    signInWithGoogle = () => {
+      var provider = new firebase.auth.GoogleAuthProvider();
+      this.auth.signInWithPopup(provider).then(result => {
+        console.log(result)
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+    signInWithFacebook = () => {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      this.auth.signInWithPopup(provider).then(result => {
+        console.log(result);
+      }).catch(err => {
+        console.log(err)
+      })
     }
 }
-class FirebaseContextProvider extends Component {
-    state = {
-        firebase: new Firebase()
-    }
-    render() {
-        return (
-            <FirebaseContext.Provider value={this.state.firebase}>
-                {this.props.children}
-            </FirebaseContext.Provider>
-        )
-    }
-}
-export {FirebaseContextProvider, FirebaseContext};
+
+export {Firebase, FirebaseContext};

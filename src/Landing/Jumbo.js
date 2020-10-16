@@ -38,7 +38,7 @@ export default function Jumbo() {
                         variant="contained" 
                         color="secondary" 
                         className={classes.button}
-                        href="/signin"
+                        href="/signup"
                     >Get Started</Button>
                 </Grid>
                 <Grid item container sm={6}>

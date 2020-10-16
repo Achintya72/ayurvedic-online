@@ -13,10 +13,10 @@ function App() {
         <ThemeProvider theme={theme}>
             <div>
                 <Navigation />
-                <br />
                 <Switch>
                     <Route exact path='/' component={Landing} />
                     <Route path='/signin' component={SignIn} />
+                    <Route path='/signup' component={SignUp} />
                 </Switch>
             </div>
         </ThemeProvider>
