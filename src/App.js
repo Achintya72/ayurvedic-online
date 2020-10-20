@@ -11,7 +11,7 @@ import { theme } from './Theme';
 function App() {
     return (
         <ThemeProvider theme={theme}>
-            <div>
+            <div style={{height: '100%'}}>
                 <Navigation />
                 <Switch>
                     <Route exact path='/' component={Landing} />

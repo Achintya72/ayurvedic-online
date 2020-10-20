@@ -4,32 +4,32 @@ import { Link, useHistory } from 'react-router-dom';
 import { FormControl, Paper, Grid, FormHelperText, Input, InputLabel, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { GoogleButton, FacebookButton } from './Buttons';
-
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: '4em',
-        width: '100%',
-        textAlign: 'center'
-    },
-    formcontrol: {
-        width: '90%',
-        margin: 'auto'
-    },
-    input: {
-        fontFamily: 'Hind',
-        fontSize: '15pt'
-    },
-    marginTop: {
-        marginTop: '2em'
-    },
-    header: {
-        marginTop: '1em'
-    },
-    root: {
-        backgroundColor: theme.palette.secondary.main,
-        paddingBottom: '4em'
-    }
-}))
+import {useStyles} from './SignIn';
+// const useStyles = makeStyles((theme) => ({
+//     paper: {
+//         marginTop: '4em',
+//         width: '100%',
+//         textAlign: 'center'
+//     },
+//     formcontrol: {
+//         width: '90%',
+//         margin: 'auto'
+//     },
+//     input: {
+//         fontFamily: 'Hind',
+//         fontSize: '15pt'
+//     },
+//     marginTop: {
+//         marginTop: '2em'
+//     },
+//     header: {
+//         marginTop: '1em'
+//     },
+//     root: {
+//         backgroundColor: theme.palette.secondary.main,
+//         paddingBottom: '4em'
+//     }
+// }))
 
 export default function SignUp() {
     const history = useHistory();

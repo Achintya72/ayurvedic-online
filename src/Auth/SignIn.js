@@ -9,11 +9,13 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: '4em',
     width: '100%',
-    textAlign: 'center'
+    textAlign: 'center',
+    height: 'fit-content',
+    paddingBottom: '1em'
   },
   formcontrol: {
     width: '90%',
-    margin: 'auto'
+    margin: 'auto',
   },
   input: {
     fontFamily: 'Hind',
@@ -27,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     backgroundColor: theme.palette.secondary.main,
-    paddingBottom: '4em'
+    paddingBottom: '4em',
+    height: '100%'
   }
 }))
 
@@ -116,6 +119,8 @@ export default function SignIn() {
           </Grid>
         </Paper>
       </Grid>
+      <Grid item sm={4} />
     </Grid>
   )
 }
+export {useStyles}
