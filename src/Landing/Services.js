@@ -75,7 +75,7 @@ function ServiceCard(props) {
     const classes = useStyles();
     return (
         <Grid item container sm={4} className={classes.service} direction="column">
-            <Grid item container><img src={props.img} className={classes.picture} /></Grid>
+            <Grid item container><img src={props.img} className={classes.picture} alt=""/></Grid>
             <Typography variant="body2">{props.heading}</Typography>
             <Typography variant="h2">{props.description}</Typography>
         </Grid>

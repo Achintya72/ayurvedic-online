@@ -2,7 +2,6 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import { withStyles } from '@material-ui/styles';
 
 const Google = withStyles((theme) => ({
