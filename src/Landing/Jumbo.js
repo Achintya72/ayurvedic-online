@@ -28,7 +28,7 @@ export default function Jumbo() {
         <Grid className={classes.root} container direction="row">
             <Grid item sm={12} className={classes.paddingtop} />
             <Grid item sm={1} />
-            <Grid item container sm={10} direction="inherit">
+            <Grid item container sm={10} direction="row">
                 <Grid item container sm={6} direction="column">
                     <div className={classes.heading}>
                         <Typography variant="h1">Ayurveda Online</Typography>
@@ -42,7 +42,7 @@ export default function Jumbo() {
                     >Get Started</Button>
                 </Grid>
                 <Grid item container sm={6}>
-                    <img src={LandingPic} />
+                    <img src={LandingPic} alt=""/>
                 </Grid>
             </Grid>
             <Grid item sm={12} className={classes.padding} />

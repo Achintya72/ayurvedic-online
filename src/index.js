@@ -2,15 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { Firebase, FirebaseContext } from './Utils';
+import { Firebase, FirebaseContext, UserContextProvider } from './Utils';
 import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <FirebaseContext.Provider value={new Firebase()}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </FirebaseContext.Provider>,
+    <UserContextProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </UserContextProvider>
+  </FirebaseContext.Provider>
+  ,
   document.getElementById('root')
 );
 

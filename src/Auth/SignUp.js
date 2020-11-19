@@ -1,54 +1,24 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { FirebaseContext } from '../Utils';
-import { Link, useHistory } from 'react-router-dom';
-import { FormControl, Paper, Grid, FormHelperText, Input, InputLabel, Typography, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
+import { FirebaseContext, UserContext } from '../Utils';
+import { Link, Redirect, withRouter } from 'react-router-dom';
+import { FormControl, Paper, Grid, FormHelperText, Input, InputLabel, Typography, Button } from '@material-ui/core';
 import { GoogleButton, FacebookButton } from './Buttons';
 import {useStyles} from './SignIn';
-// const useStyles = makeStyles((theme) => ({
-//     paper: {
-//         marginTop: '4em',
-//         width: '100%',
-//         textAlign: 'center'
-//     },
-//     formcontrol: {
-//         width: '90%',
-//         margin: 'auto'
-//     },
-//     input: {
-//         fontFamily: 'Hind',
-//         fontSize: '15pt'
-//     },
-//     marginTop: {
-//         marginTop: '2em'
-//     },
-//     header: {
-//         marginTop: '1em'
-//     },
-//     root: {
-//         backgroundColor: theme.palette.secondary.main,
-//         paddingBottom: '4em'
-//     }
-// }))
 
-export default function SignUp() {
-    const history = useHistory();
+
+function SignUp({ history }) {
+
     const firebase = useContext(FirebaseContext);
-
-    useEffect(() => {
-        firebase.auth.onAuthStateChanged((user) => {
-            if (user) {
-                history.push('/dashboard')
-            }
-        })
-    })
+    const {user} = useContext(UserContext);
 
     const [credentials, manageCredentials] = useState({
         email: '',
         password: '',
         cpassword: ''
     });
+
     const [err, errHandler] = useState(null);
+    
     function handleChange(event) {
         const { name, value } = event.target
         manageCredentials(prevInputData => {
@@ -59,22 +29,44 @@ export default function SignUp() {
         })
 
     }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        firebase.doSignUpWithEmailAndPassword(credentials.email, credentials.password)
-        .catch(err => {
-            errHandler(err.message);
-        })
+    
+    const handleSubmit = useCallback(async event => {
+        const {email, password } = credentials;
+        try {
+            await firebase
+                .doSignUpWithEmailAndPassword(email, password);
+            history.push("/dashboard");
+        } catch (error) {
+            errHandler(error);
+        }
+    }, [history])
 
-    }
-    const signInWithGoogle = () => {
-        firebase.signInWithGoogle();
-    }
-    const signInWithFacebook = () => {
-        firebase.signInWithFacebook()
-    }
+    const signInWithGoogle = useCallback(async () => {
+        try {
+            await firebase
+                .signInWithGoogle();
+            history.push("/dashboard");
+        } catch (error) {
+            errHandler(error);
+        }
+    }, [history])
+
+    const signInWithFacebook = useCallback(async () => {
+        try {
+            await firebase
+                .signInWithFacebook();
+            history.push("/dashboard");
+        } catch (error) {
+            errHandler(error);
+        }
+    }, [history])
+
     const classes = useStyles();
     const disabled = credentials.password !== credentials.cpassword || credentials.password.length < 6 ? true : false;
+
+    if(user.name !== null) {
+        return <Redirect to="/dashboard" />;
+    }
     return (
         <Grid container className={classes.root}>
             <Grid item sm={4} />
@@ -132,3 +124,4 @@ export default function SignUp() {
         </Grid>
     )
 }
+export default withRouter(SignUp);
